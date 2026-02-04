@@ -27,8 +27,8 @@ class DelaySpiceGenerator(BaseSpiceGenerator):
         # Call the base class constructor
         super().__init__(arc, cell, library_db, sim_type or 'delay')
 
-    # Get the first delay Template class
-        self.delay_template = self.library_db.get_templates_by_type('delay')[0]
+    # Get the proper delay Template class
+        self.delay_template = self.library_db.get_template(cell.delay_template)
         if not self.delay_template:
             raise ValueError(f"No delay template found for cell {self.cell.name}")
 
